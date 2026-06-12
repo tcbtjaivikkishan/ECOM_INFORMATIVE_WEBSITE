@@ -21,7 +21,7 @@ export default function Header() {
         { name: "पंचमहाभूत", href: "/panchmahabhoot" }
       ]
     },
-    { name: 'उत्पाद', href: 'https://products.tcbtjaivikkisan.com', external: true },
+    { name: 'उत्पाद', href: 'https://tcbt-ecommerce-weld.vercel.app', external: true },
     {
       name: 'अन्य जानकारी',
       href: '',
