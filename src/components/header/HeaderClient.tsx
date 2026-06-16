@@ -119,7 +119,7 @@ export default function HeaderClient({ navLinks }: { navLinks: NavLink[] }) {
                 </motion.a>
                 <motion.div whileHover={{ scale: 1.05 }}>
                   <Link
-                    href="https://products.tcbtjaivikkisan.com"
+                    href="https://tcbt-ecomm.vercel.app"
                     className="flex items-center gap-2 bg-yellow-400 text-green-900 px-4 py-1.5 rounded-full hover:bg-yellow-300 transition-all font-semibold shadow-lg"
                   >
                     <ShoppingCartIcon className="w-4 h-4" />
