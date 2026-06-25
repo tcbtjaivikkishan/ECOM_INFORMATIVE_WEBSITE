@@ -158,6 +158,7 @@ export default function HeaderClient({ navLinks }: { navLinks: NavLink[] }) {
                   src="/logo.webp"
                   alt="TCBT Logo"
                   fill
+                  sizes="48px"
                   className="object-contain"
                   priority
                 />

@@ -3,7 +3,21 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import Image from "next/image";
 import Link from "next/link";
 
-const Footer = () => {
+type SocialLink = {
+  name: string;
+  href: string;
+  // lucide icons and MUI icon components both work as React components
+  icon: React.ComponentType<{ className?: string }>;
+};
+
+type NavLink = { name: string; href: string };
+
+type QuickLink = NavLink;
+
+type FooterProps = {};
+
+const Footer = (_props: FooterProps) => {
+
   const quickLinks = [
     { "name": "हमारी समाधान", "href": "/solutions" },
 
@@ -61,7 +75,7 @@ const Footer = () => {
 
   return (
     <footer className="relative bg-linear-to-b from-green-100 to-stone-100/30 overflow-hidden">
-      { }
+
       <div className="absolute bottom-0 left-0 w-64 h-64 opacity-[0.03]">
         <svg viewBox="0 0 200 200" className="w-full h-full">
           <path d="M100,20 Q160,60 180,120 Q190,160 160,180 Q120,200 80,180 Q40,160 30,120 Q20,80 40,50 Q60,20 100,20 Z"
@@ -69,15 +83,14 @@ const Footer = () => {
         </svg>
       </div>
 
-      <div className="relative z-10">
+     <div className="relative z-10">
+  { }
+  <div className="max-w-7xl ...">
+    { }
+    <div className="grid ...">
+      { }
+      <div className="bg-linear-to-br ...">
         { }
-        <div className="max-w-7xl mx-auto px-4 md:px-6 pt-16 pb-8">
-          { }
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-
-            { }
-            <div className="bg-linear-to-br from-green-600 via-green-700 to-emerald-700 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
-              { }
               <div className="absolute top-0 right-0 w-40 h-40 opacity-10">
                 <div className="absolute inset-0" style={{
                   backgroundImage: `radial-gradient(circle, white 1px, transparent 1px)`,
@@ -87,15 +100,17 @@ const Footer = () => {
 
               <div className="relative">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
-                    <Image
-                      src="/logo.webp"
-                      alt="TCBT Logo"
-                      fill
-                      className="object-contain"
-                      priority
-                    />                  </div>
-                  <div>
+                <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+  <Image
+    src="/logo.webp"
+    alt="TCBT Logo"
+    width={48}
+    height={48}
+    className="object-contain"
+    priority
+  />
+</div>
+<div>
                     <h2 className="text-2xl font-bold">TCBT Jaivik Kisan</h2>
                     <p className="text-green-100 text-sm">ताराचंद बेलजी तकनीक</p>
                   </div>
