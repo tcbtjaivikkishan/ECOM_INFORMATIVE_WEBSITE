@@ -28,7 +28,6 @@ export default function AnimatedHero({ images }: Props) {
   const scale = useTransform(scrollY, [0, 300], [1, 1.1])
   const opacity = useTransform(scrollY, [0, 300], [1, 0])
 
-
   useEffect(() => {
     const id = setInterval(() => {
       setCurrent((i) => (i + 1) % images.length)
@@ -72,26 +71,13 @@ export default function AnimatedHero({ images }: Props) {
 
       { }
       <motion.div
-        className="relative z-10 h-full flex flex-col items-center justify-center px-6 text-center"
+        className="absolute inset-x-0 bottom-6 sm:bottom-8 z-10 flex justify-center px-4"
         style={{ opacity }}
       >
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6"
-        >
-          स्वागत है
-          <br />
-          <span className="bg-green-600 hover:bg-green-700 bg-clip-text text-transparent">
-            TCBT जैविक किसान
-          </span>
-        </motion.h1>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
           className="flex flex-col sm:flex-row gap-4"
         >
           <Button
