@@ -520,15 +520,3 @@ html {
 .animate-slideUp {
   animation: slideUp 0.8s ease-out forwards;
 }
-
-/* Zoho SalesIQ launcher: move from the default right side to the left */
-#zsiq_float,
-#zsiqwidget,
-#zsiq_maintab {
-  left: 16px !important;
-  right: auto !important;
-}
-
-#zsiqwidget {
-  margin-left: 0 !important;
-}

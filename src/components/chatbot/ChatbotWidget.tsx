@@ -11,7 +11,7 @@ import { RootState } from "@/store";
 import { setToken } from "@/store/slices/chat/chatSlice";
 import {
   Send,
-  MessageSquare,
+  MessageCircle,
   X,
   Minimize2,
   Loader2,
@@ -110,7 +110,7 @@ export default function ChatbotWidget({
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => setIsOpen((p) => !p)}
-          className="fixed bottom-6 right-4 sm:right-6 w-14 h-14 sm:w-16 sm:h-16 bg-linear-to-br from-green-500 to-emerald-600 rounded-full shadow-2xl flex items-center justify-center text-white z-50 p-0 leading-none overflow-hidden"
+          className="fixed bottom-6 right-4 sm:right-6 w-14 h-14 sm:w-16 sm:h-16 bg-linear-to-br from-green-500 to-emerald-600 rounded-full shadow-2xl flex items-center justify-center text-white z-50"
         >
           <AnimatePresence mode="wait">
             {isOpen ? (
@@ -119,9 +119,8 @@ export default function ChatbotWidget({
                 initial={{ rotate: -90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
                 exit={{ rotate: 90, opacity: 0 }}
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
               >
-                <X className="block h-5 w-5 shrink-0" />
+                <X />
               </motion.div>
             ) : (
               <motion.div
@@ -129,9 +128,9 @@ export default function ChatbotWidget({
                 initial={{ rotate: 90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
                 exit={{ rotate: -90, opacity: 0 }}
-                className="absolute inset-0 flex items-center justify-center"
+                className="relative"
               >
-                <MessageSquare className="block h-5 w-5 shrink-0 -translate-x-[2px]" />
+                <MessageCircle />
                 {messages.length > 0 && (
                   <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white" />
                 )}

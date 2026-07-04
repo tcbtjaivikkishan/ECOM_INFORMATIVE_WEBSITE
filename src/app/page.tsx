@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge'
 import Testimonials from '@/components/home/testimonials/Testimonials'
 import Image from 'next/image'
 import PanchMahabhut from '@/components/home/PanchMahabhut'
+import { HelpWidget } from "@/components/common/HelpWidget";
 
 export default async function Home() {
 
@@ -205,6 +206,7 @@ export default async function Home() {
       </section>
       <Statistics />
       <Testimonials />
+      <HelpWidget />
     </main>
   )
 }

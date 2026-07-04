@@ -72,43 +72,6 @@ export default function RootLayout({
               {children}
               <Footer />
               <ChatbotWidget />
-              <Script id="zoho-salesiq-ready" strategy="afterInteractive">
-                {`window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}`}
-              </Script>
-              <Script
-                id="zsiqscript"
-                src="https://salesiq.zohopublic.in/widget?wc=siq3a9a2a1238b2a60e94697c565f2e05c3b856c71ebc49fbb8fd98a325e74824a4"
-                strategy="afterInteractive"
-              />
-              <Script id="zoho-salesiq-left" strategy="afterInteractive">
-                {`
-                  (function () {
-                    function moveLauncherLeft() {
-                      var selectors = ['#zsiq_float', '#zsiqwidget', '#zsiq_maintab', '[id*="zsiq"]', '[class*="zsiq"]'];
-                      selectors.forEach(function (selector) {
-                        document.querySelectorAll(selector).forEach(function (el) {
-                          el.style.setProperty('left', '16px', 'important');
-                          el.style.setProperty('right', 'auto', 'important');
-                        });
-                      });
-                    }
-
-                    moveLauncherLeft();
-
-                    var observer = new MutationObserver(function () {
-                      moveLauncherLeft();
-                    });
-
-                    observer.observe(document.documentElement, {
-                      childList: true,
-                      subtree: true,
-                    });
-
-                    window.addEventListener('load', moveLauncherLeft);
-                    setInterval(moveLauncherLeft, 1000);
-                  })();
-                `}
-              </Script>
             </ReduxProvider>
 
           </ThemeProvider>
