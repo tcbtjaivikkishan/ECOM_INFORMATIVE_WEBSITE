@@ -89,7 +89,7 @@ export default function ChatbotWidget({
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.85, y: 20 }}
               transition={{ duration: 0.25 }}
-              className="fixed bottom-20 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-96 h-[500px] sm:h-[550px] bg-white rounded-3xl shadow-2xl flex flex-col z-50 border border-gray-100"
+              className="fixed bottom-20 left-4 sm:left-6 w-[calc(100vw-2rem)] sm:w-96 h-[500px] sm:h-[550px] bg-white rounded-3xl shadow-2xl flex flex-col z-50 border border-gray-100"
             >
               <ChatContent
                 messages={messages}
@@ -110,7 +110,7 @@ export default function ChatbotWidget({
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => setIsOpen((p) => !p)}
-          className="fixed bottom-6 right-4 sm:right-6 w-14 h-14 sm:w-16 sm:h-16 bg-linear-to-br from-green-500 to-emerald-600 rounded-full shadow-2xl flex items-center justify-center text-white z-50"
+          className="fixed bottom-6 left-4 sm:left-6 w-14 h-14 sm:w-16 sm:h-16 bg-linear-to-br from-green-500 to-emerald-600 rounded-full shadow-2xl flex items-center justify-center text-white z-50"
         >
           <AnimatePresence mode="wait">
             {isOpen ? (

@@ -74,6 +74,18 @@ export default function RootLayout({
               <ChatbotWidget />
             </ReduxProvider>
 
+            <Script id="zoho-salesiq" strategy="afterInteractive">
+              {`
+                window.$zoho = window.$zoho || {};
+                $zoho.salesiq = $zoho.salesiq || { ready: function() {} };
+              `}
+            </Script>
+            <Script
+              id="zsiqscript"
+              src="https://salesiq.zohopublic.in/widget?wc=siq3a9a2a1238b2a60e94697c565f2e05c3b856c71ebc49fbb8fd98a325e74824a4"
+              strategy="afterInteractive"
+            />
+
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
