@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_Devanagari } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
@@ -9,18 +8,6 @@ import Script from "next/script";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import theme from "@/lib/theme";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const devanagari = Noto_Sans_Devanagari({
-  subsets: ["devanagari"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-devanagari",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "TCBT JAIVIK KISHAN",
@@ -54,7 +41,7 @@ export default function RootLayout({
 </Script>
       </head>
 
-      <body className={`${inter.variable} ${devanagari.variable}`}>
+      <body>
         <noscript>
   <iframe
     src="https://www.googletagmanager.com/ns.html?id=GTM-PXP6TTXP"

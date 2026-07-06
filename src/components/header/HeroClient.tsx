@@ -43,9 +43,27 @@ export default function AnimatedHero({ images }: Props) {
   }
 
   return (
-    <div className="relative h-[60vh] lg:h-[80vh] overflow-hidden">
+    <div className="relative overflow-hidden bg-linear-to-b from-emerald-50 to-white sm:h-[56vh] lg:h-[80vh]">
       { }
-      <motion.div className="absolute inset-0" style={{ scale }}>
+      <motion.div className="block sm:hidden" style={{ scale }}>
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={current}
+            src={images[current]}
+            alt="TCBT Hero Banner"
+            initial={{ opacity: 0, scale: 1.02 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.02 }}
+            transition={{ duration: 1.2 }}
+            className="w-full h-auto block"
+          />
+        </AnimatePresence>
+      </motion.div>
+
+      <motion.div
+        className="absolute inset-0 hidden sm:block"
+        style={{ scale }}
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -71,19 +89,19 @@ export default function AnimatedHero({ images }: Props) {
 
       { }
       <motion.div
-        className="absolute inset-x-0 bottom-6 sm:bottom-8 z-10 flex justify-center px-4"
+        className="absolute inset-x-0 bottom-3 sm:bottom-6 z-10 flex justify-center px-3 sm:px-4"
         style={{ opacity }}
       >
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4"
+          className="flex w-full justify-center"
         >
           <Button
             size="lg"
             onClick={scrollToNext}
-            className="bg-green-600 hover:bg-green-700 rounded-full px-8 py-6 text-lg font-bold"
+            className="w-[92%] max-w-[340px] sm:w-auto bg-green-600 hover:bg-green-700 rounded-full px-5 sm:px-8 py-3 sm:py-6 text-base sm:text-lg font-bold shadow-lg"
             asChild
           >
             <Link href="https://products.tcbtjaivikkisan.com">
