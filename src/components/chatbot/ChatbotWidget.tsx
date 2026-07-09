@@ -8,7 +8,6 @@ import {
   fetchChats,
 } from "@/store/slices/chat/chatThunks";
 import { RootState } from "@/store";
-import { setToken } from "@/store/slices/chat/chatSlice";
 import {
   Send,
   MessageCircle,
@@ -29,9 +28,7 @@ export default function ChatbotWidget({
   isFullPage = false,
 }: ChatbotWidgetProps) {
   const dispatch = useDispatch<any>();
-  const { messages, loading, token } = useSelector(
-    (state: RootState) => state.chat
-  );
+  const { messages, loading } = useSelector((state: RootState) => state.chat);
 
   const [input, setInput] = useState("");
   const [isOpen, setIsOpen] = useState(isFullPage);
@@ -40,19 +37,8 @@ export default function ChatbotWidget({
   const prevMessageCountRef = useRef<number>(messages.length);
 
   useEffect(() => {
-    const initializeChat = async () => {
-      const savedToken = localStorage.getItem("chatToken");
-
-      if (savedToken) {
-        dispatch(setToken(savedToken));
-        dispatch(fetchChats());
-      } else {
-        const res = await dispatch(createSession()).unwrap();
-        localStorage.setItem("chatToken", res.token);
-      }
-    };
-
-    initializeChat();
+    dispatch(createSession());
+    dispatch(fetchChats());
   }, []);
 
   useEffect(() => {

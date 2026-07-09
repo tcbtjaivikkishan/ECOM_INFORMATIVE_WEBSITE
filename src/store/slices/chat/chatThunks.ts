@@ -4,40 +4,27 @@ import { apiFetch } from "@/lib/API/chat";
 export const createSession = createAsyncThunk(
   "chat/session",
   async () => {
-    return apiFetch("/api/session", { method: "POST" });
+    await apiFetch("/api/session", { method: "POST" });
+    return { sessionCreated: true };
   }
 );
 
 export const askQuestion = createAsyncThunk(
   "chat/ask",
-  async (question: string, { getState }) => {
-    // @ts-ignore
-    const token = getState().chat.token;
+  async (question: string) => {
+    const res = await apiFetch("/api/ask", {
+      method: "POST",
+      body: JSON.stringify({ question }),
+    });
 
-    const res = await apiFetch(
-      "/api/ask",
-      {
-        method: "POST",
-        body: JSON.stringify({ question }),
-      },
-      token
-    );
-
-    return res.answer;
+    return res.answer || res.response || res.message || JSON.stringify(res);
   }
 );
 
 export const fetchChats = createAsyncThunk(
   "chat/history",
-  async (_, { getState }) => {
-    // @ts-ignore
-    const token = getState().chat.token;
-
-    const res = await apiFetch("/api/chats", {}, token);
-
-    return res.map((c: any) => ({
-      role: c.role,
-      message: c.message,
-    }));
+  async () => {
+    const res = await apiFetch("/api/chats", { method: "GET" });
+    return res.chats || res.messages || res || [];
   }
 );

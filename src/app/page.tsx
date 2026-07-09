@@ -4,12 +4,14 @@ import { Badge } from '@/components/ui/badge'
 import Testimonials from '@/components/home/testimonials/Testimonials'
 import Image from 'next/image'
 import PanchMahabhut from '@/components/home/PanchMahabhut'
+import QuickLinksPopup from '@/components/home/QuickLinksPopup'
 
 export default async function Home() {
 
 
   return (
     <main>
+      <QuickLinksPopup />
       <Hero />
       <section className="relative py-20 md:py-28 bg-linear-to-br from-emerald-50 via-white to-green-50 overflow-hidden">
 

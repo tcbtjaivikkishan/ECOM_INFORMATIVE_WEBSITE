@@ -29,11 +29,23 @@ export default function AnimatedHero({ images }: Props) {
   const opacity = useTransform(scrollY, [0, 300], [1, 0])
 
   useEffect(() => {
+    const preloaders = images.map((src) => {
+      const img = new window.Image()
+      img.src = src
+      return img
+    })
+
     const id = setInterval(() => {
       setCurrent((i) => (i + 1) % images.length)
     }, 5000)
 
-    return () => clearInterval(id)
+    return () => {
+      clearInterval(id)
+      preloaders.forEach((img) => {
+        img.onload = null
+        img.onerror = null
+      })
+    }
   }, [images.length])
 
   const scrollToNext = () => {
@@ -43,20 +55,27 @@ export default function AnimatedHero({ images }: Props) {
   }
 
   return (
-    <div className="relative overflow-hidden bg-linear-to-b from-emerald-50 to-white sm:h-[56vh] lg:h-[80vh]">
+    <div className="relative w-full overflow-hidden bg-linear-to-b from-emerald-50 to-white aspect-[2560/1450] sm:aspect-auto sm:h-[calc(100vh-176px)] sm:min-h-0 sm:max-h-none lg:h-[calc(100vh-176px)]">
       { }
-      <motion.div className="block sm:hidden" style={{ scale }}>
+      <motion.div
+        className="absolute inset-0 block sm:hidden"
+        style={{ scale }}
+      >
         <AnimatePresence mode="wait">
-          <motion.img
+          <motion.div
             key={current}
-            src={images[current]}
-            alt="TCBT Hero Banner"
             initial={{ opacity: 0, scale: 1.02 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.02 }}
             transition={{ duration: 1.2 }}
-            className="w-full h-auto block"
-          />
+            className="absolute inset-0 bg-emerald-50 bg-center bg-cover bg-no-repeat"
+            style={{
+              backgroundImage: `url(${images[current]})`,
+            }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-b from-emerald-100/10 via-emerald-50/5 to-white/20" />
+            <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/10 to-black/30" />
+          </motion.div>
         </AnimatePresence>
       </motion.div>
 
@@ -71,10 +90,8 @@ export default function AnimatedHero({ images }: Props) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.05 }}
             transition={{ duration: 1.2 }}
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: `url(${images[current]})`,
-            }}
+            className="absolute inset-0 bg-emerald-50 bg-center bg-cover bg-no-repeat"
+            style={{ backgroundImage: `url(${images[current]})` }}
           >
             <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/30 to-transparent" />
             <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-black/20" />

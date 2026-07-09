@@ -1,4 +1,4 @@
-export const API_BASE_URL = "https://zoho-ai-backend.onrender.com";
+const API_BASE_URL = "https://zoho-ai-backend.onrender.com";
 
 export const apiFetch = async (
   url: string,

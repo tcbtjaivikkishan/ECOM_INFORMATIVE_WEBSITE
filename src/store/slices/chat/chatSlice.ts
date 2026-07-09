@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { askQuestion, createSession, fetchChats } from "./chatThunks";
 
 interface Message {
@@ -7,14 +7,12 @@ interface Message {
 }
 
 interface ChatState {
-  token: string | null;
   messages: Message[];
   loading: boolean;
   error: string | null;
 }
 
 const initialState: ChatState = {
-  token: null,
   messages: [],
   loading: false,
   error: null,
@@ -23,16 +21,11 @@ const initialState: ChatState = {
 const chatSlice = createSlice({
   name: "chat",
   initialState,
-  reducers: {
-    setToken: (state, action: PayloadAction<string>) => {
-      state.token = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(createSession.fulfilled, (state, action) => {
-        state.token = action.payload.token;
-        localStorage.setItem("chatToken", action.payload.token);
+      .addCase(createSession.fulfilled, (state) => {
+        state.error = null;
       })
       .addCase(fetchChats.fulfilled, (state, action) => {
         state.messages = action.payload;
@@ -54,5 +47,4 @@ const chatSlice = createSlice({
   },
 });
 
-export const { setToken } = chatSlice.actions;
 export default chatSlice.reducer;
