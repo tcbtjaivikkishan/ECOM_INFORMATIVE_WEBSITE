@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type TouchEvent } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X, ExternalLink } from "lucide-react";
 
@@ -32,6 +32,8 @@ const QUICK_LINKS: QuickLink[] = [
 export default function QuickLinksPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -40,6 +42,18 @@ export default function QuickLinksPopup() {
 
     return () => window.clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const interval = window.setInterval(() => {
+      goToNext();
+    }, 15000);
+
+    return () => window.clearInterval(interval);
+  }, [isOpen]);
 
   const closePopup = () => {
     setIsOpen(false);
@@ -55,6 +69,38 @@ export default function QuickLinksPopup() {
     setActiveIndex((current) =>
       current === QUICK_LINKS.length - 1 ? 0 : current + 1
     );
+  };
+
+  const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+    touchStartX.current = touch.clientX;
+    touchStartY.current = touch.clientY;
+  };
+
+  const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
+    if (touchStartX.current === null || touchStartY.current === null) {
+      return;
+    }
+
+    const touch = event.changedTouches[0];
+    const deltaX = touch.clientX - touchStartX.current;
+    const deltaY = touch.clientY - touchStartY.current;
+    const minSwipeDistance = 40;
+
+    touchStartX.current = null;
+    touchStartY.current = null;
+
+    if (Math.abs(deltaX) < minSwipeDistance) {
+      return;
+    }
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX < 0) {
+        goToNext();
+      } else {
+        goToPrev();
+      }
+    }
   };
 
   if (!isOpen) {
@@ -104,7 +150,11 @@ export default function QuickLinksPopup() {
               <ChevronLeft className="h-3.5 w-3.5" />
             </button>
 
-            <div className="group flex min-h-[unset] w-full flex-1 flex-col overflow-hidden rounded-2xl border border-emerald-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl sm:min-h-[280px] sm:flex-row md:min-h-[310px] sm:rounded-3xl">
+            <div
+              className="group flex min-h-[unset] w-full flex-1 flex-col overflow-hidden rounded-2xl border border-emerald-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl sm:min-h-[280px] sm:flex-row md:min-h-[310px] sm:rounded-3xl touch-pan-y"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
               <div className="relative aspect-[16/11] w-full overflow-hidden bg-emerald-50 sm:aspect-auto sm:w-[42%] sm:min-h-[280px]">
                 <Image
                   src={slide.image}
