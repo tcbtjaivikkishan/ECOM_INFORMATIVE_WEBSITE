@@ -50,7 +50,7 @@ export default function QuickLinksPopup() {
 
     const interval = window.setInterval(() => {
       goToNext();
-    }, 15000);
+    }, 7000);
 
     return () => window.clearInterval(interval);
   }, [isOpen]);
