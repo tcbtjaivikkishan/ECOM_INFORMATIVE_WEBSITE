@@ -311,6 +311,7 @@ export default function HeaderClient({ navLinks }: { navLinks: NavLink[] }) {
                         pathname={pathname}
                         activeDropdown={activeDropdown}
                         setActiveDropdown={setActiveDropdown}
+                        onClose={() => setIsMobileMenuOpen(false)}
                       />
                     </motion.div>
                   ))}
@@ -453,6 +454,7 @@ function MobileNavItem({
   pathname,
   activeDropdown,
   setActiveDropdown,
+  onClose,
 }: any) {
   const isActive = pathname === link.href;
   const hasDropdown = link.dropdown && link.dropdown.length > 0;
@@ -463,6 +465,7 @@ function MobileNavItem({
         href={link.href}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={onClose}
         className="flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-xl transition-all font-semibold"
       >
         {link.name}
@@ -504,6 +507,7 @@ function MobileNavItem({
                 <Link
                   key={i}
                   href={item.href}
+                  onClick={onClose}
                   className="block px-4 py-2.5 text-gray-700 hover:text-green-700 transition-colors font-medium"
                 >
                   {item.name}
@@ -519,6 +523,7 @@ function MobileNavItem({
   return (
     <Link
       href={link.href}
+      onClick={onClose}
       className={`block px-4 py-3 font-semibold rounded-xl transition-all ${
         isActive
           ? "text-green-700 bg-green-50"

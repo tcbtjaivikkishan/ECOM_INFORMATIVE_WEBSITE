@@ -5,6 +5,7 @@ import Testimonials from '@/components/home/testimonials/Testimonials'
 import Image from 'next/image'
 import PanchMahabhut from '@/components/home/PanchMahabhut'
 import QuickLinksPopup from '@/components/home/QuickLinksPopup'
+import CoursesSection from '@/components/home/CoursesSection'
 
 export default async function Home() {
 
@@ -205,6 +206,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
+      <CoursesSection />
       <Statistics />
       <Testimonials />
     </main>

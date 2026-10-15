@@ -26,5 +26,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: "https://www.tcbtjaivikkisan.com/success-stories",
       priority: 0.8,
     },
+    {
+      url: "https://www.tcbtjaivikkisan.com/education",
+      priority: 0.9,
+    },
+    {
+      url: "https://www.tcbtjaivikkisan.com/education/terracefarming",
+      priority: 0.9,
+    },
   ];
 }

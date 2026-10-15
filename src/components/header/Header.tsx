@@ -21,6 +21,7 @@ export default function Header() {
         { name: "पंचमहाभूत", href: "/panchmahabhoot" }
       ]
     },
+    { name: 'Education', href: '/education' },
     { name: 'उत्पाद', href: 'https://products.tcbtjaivikkisan.com', external: true },
     {
       name: 'अन्य जानकारी',

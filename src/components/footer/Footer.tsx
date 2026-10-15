@@ -25,6 +25,7 @@ const Footer = (_props: FooterProps) => {
     { name: "TCBT Science", href: "/tcbt-science" },
     { name: "TCBT Farming Methodology", href: "/farming-methodology" },
     { name: "Gallery & Field Impact", href: "/gallery-field-impact" },
+    { name: "TCBT Education & कोर्सेज", href: "/education" },
   ];
 
   const socialLinks = [
