@@ -50,7 +50,7 @@ export default async function Home() {
             <div className="relative group">
               <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl">
               <Image
-  src="/Tarachand-Belji/with_Ranbir_sir.webp"
+  src="/Tarachand-Belji/tarachand_belji_orchard.jpg"
   alt="Panch Mahabhut Nature"
   fill
   priority
